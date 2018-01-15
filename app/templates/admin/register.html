@@ -1,0 +1,27 @@
+{% extends "admin/wrapper.html" %}
+{% block titile %} Admin Register {% endblock %}
+{% block body %}
+  <body id="login">
+    <div class="container">
+
+      <form class="form-signin">
+        <h2 class="form-signin-heading">Sign Up</h2>
+        <input type="text" class="input-block-level" placeholder="Email address">
+        <input type="password" class="input-block-level" placeholder="Password">
+        <label class="checkbox">
+          <input type="checkbox" value="remember-me"> Remember me
+        </label>
+        <label class="checkbox">
+          <a href="{{ url_for('admin_login') }}">Sign In here</a>
+        </label>
+        <button class="btn btn-large btn-primary" type="submit">Sign Up</button>
+      </form>
+
+    </div> <!-- /container -->
+    {% endblock %}
+{% block footer %}
+    <script src="static/admin/bootstrap/js/bootstrap.min.js"></script>
+    <script src="static/admin/assets/scripts.js"></script>
+  </body>
+</html>
+{% endblock %}

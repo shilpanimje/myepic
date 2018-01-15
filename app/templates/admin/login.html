@@ -1,0 +1,48 @@
+{% extends "admin/wrapper.html" %}
+{% block titile %} Admin Login {% endblock %}
+{% block body %}
+  <body id="login">
+       <!-- show flash message -->
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class=flashes>
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    {% for message in form.email.errors %}
+        <div>{{ form.email.label }}:{{ message }}</div>
+    {% endfor %}
+
+    {% for message in form.password.errors %}
+        <div>{{ form.password.label }}:{{ message }}</div>
+    {% endfor %}
+    <div class="container">
+
+      <form class="form-signin" action="{{ url_for('admin_login') }}" method="post">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        {{ form.email.label }}<br>
+               {{ form.email }}
+        {{ form.password.label }}<br>
+               {{ form.password }}
+        <label class="checkbox">
+          <input type="checkbox" value="remember-me"> Remember me
+        </label>
+        <label class="checkbox">
+          <a href="{{ url_for('admin_forgot_password') }}">Forgot Password</a>
+        </label>
+        <button class="btn btn-large btn-primary" type="submit">Sign in</button>
+        <button class="btn btn-large btn-primary" type="button" href="{{ url_for('admin_register') }}">Sign Up</button>
+      </form>
+
+    </div> <!-- /container -->
+    {% endblock %}
+{% block footer %}
+    <script src="static/admin/bootstrap/js/bootstrap.min.js"></script>
+    <script src="static/admin/assets/scripts.js"></script>
+  </body>
+</html>
+{% endblock %}
