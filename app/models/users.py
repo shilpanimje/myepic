@@ -43,23 +43,29 @@ class Users(db.Model):
             'id': self.id,
             'email': self.email,
             'password': self.password,
+            'authenticated': self.authenticated,
             'date_created': self.date_created
         }
 
 
-def admin_login(data):
-    pass
+def update_authenticate(user_data):
+    """Update authenticate true/false for login.
+    Args:
+        user_data
+    Returns:
+        True.
+    """
+    db.session.add(user_data)
+    db.session.commit()
 
 
-
-def admin_register(data):
+def register_user(data):
     """save vendor  data.
     Args:
-        name(varchar), company(varchar)
+        data
     Returns:
         saved records.
     """
-
     new_user = Users(
         email=data['email'].strip(),
         password=data['password'].strip(),
