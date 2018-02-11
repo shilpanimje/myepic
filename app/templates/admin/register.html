@@ -3,14 +3,38 @@
 {% block body %}
   <body id="login">
     <div class="container">
+    <!-- show flash message -->
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class=flashes>
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
 
-      <form class="form-signin">
+    {% for message in form.email.errors %}
+        <div>{{ form.email.label }}:{{ message }}</div>
+    {% endfor %}
+
+    {% for message in form.password.errors %}
+        <div>{{ form.password.label }}:{{ message }}</div>
+    {% endfor %}
+
+    {% for message in form.confirm_password.errors %}
+        <div>{{ form.confirm_password.label }}:{{ message }}</div>
+    {% endfor %}
+
+
+      <form class="form-signin" method="post" action="{{ url_for('admin_register') }}">
         <h2 class="form-signin-heading">Sign Up</h2>
-        <input type="text" class="input-block-level" placeholder="Email address">
-        <input type="password" class="input-block-level" placeholder="Password">
-        <label class="checkbox">
-          <input type="checkbox" value="remember-me"> Remember me
-        </label>
+        {{ form.email.label }}<br>
+               {{ form.email }}
+        {{ form.password.label }}<br>
+               {{ form.password }}
+        {{ form.confirm_password.label }}<br>
+               {{ form.confirm_password }}
         <label class="checkbox">
           <a href="{{ url_for('admin_login') }}">Sign In here</a>
         </label>

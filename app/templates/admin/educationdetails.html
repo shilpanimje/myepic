@@ -1,0 +1,116 @@
+{% extends "admin/adminbase.html" %}
+{% block title%}Edit Profile{% endblock %}
+{% block body %}
+<style>
+
+/* Style the tab */
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+</style>
+<div class="span9" id="content">
+                     <!-- wizard -->
+                    <div class="row-fluid section">
+                        <!-- show flash messages -->
+                        {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            <ul class="flashes">
+                                {% for message in messages %}
+                                <li>{{ message }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                        {% endwith %}
+                        <!-- block -->
+                        <div class="block">
+                            <div class="navbar navbar-inner block-header">
+                                <div class="muted pull-left">Form Wizard</div>
+                            </div>
+                            <div class="block-content collapse in">
+                                <div class="span12">
+                                    <div id="rootwizard" id="tabs">
+                                        <div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'tenth')">10th</button>
+  <button class="tablinks" onclick="openCity(event, 'twelth')">12th</button>
+  <button class="tablinks" onclick="openCity(event, 'graduate')">grduation</button>
+</div>
+ <form class="form-horizontal" method="post" action="{{ url_for('add_education_details') }}">
+<div id="tenth" class="tabcontent">
+
+      <fieldset>
+        <div class="control-group">
+          {{ form.tenth_university.label }}<br>
+          {{ form.tenth_university }}
+        </div>
+        <div class="control-group">
+         {{ form.tenth_percentage.label }}<br>
+          {{ form.tenth_percentage }}
+        </div>
+      </fieldset>
+    </div>
+
+    <div id="twelth" class="tabcontent">
+      <fieldset>
+         <div class="control-group">
+          {{ form.twelth_university.label }}<br>
+          {{ form.twelth_university }}
+        </div>
+        <div class="control-group">
+          {{ form.twelth_percentage.label }}<br>
+          {{ form.twelth_percentage }}
+        </div>
+      </fieldset>
+    </div>
+
+    <div id="graduate" class="tabcontent">
+        <fieldset>
+         <div class="control-group">
+          {{ form.gruduate_university.label }}<br>
+          {{ form.gruduate_university }}
+        </div>
+        <div class="control-group">
+         {{ form.graduate_percentage.label }}<br>
+         {{ form.graduate_percentage }}
+        </div>
+        </fieldset>
+    </div>
+     <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+</form>
+</div>
+<script>
+</script>
+{% endblock %}

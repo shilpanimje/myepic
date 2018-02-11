@@ -1,0 +1,99 @@
+{% extends "admin/adminbase.html" %}
+{% block title%}Add Skills{% endblock %}
+{% block body %}
+<div class="span9" id="content">
+
+    <div class="row-fluid">
+        <!-- block -->
+        <div class="block">
+            <div class="navbar navbar-inner block-header">
+                <div class="muted pull-left">Add Skills</div>
+            </div>
+            <!-- show flash messages -->
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class="flashes">
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            {% endwith %}
+            <!-- block -->
+            <!--/span-->
+                        <div class="span6" style="border:1px;bordercolor:grey">
+
+                            <form class="form-horizontal" method="post" action="{{ url_for('add_skills') }}" name="addskillform">
+                                <fieldset>
+                                    <div class="control-group">
+                                        {{ form.technical_skills.label }}<br>
+                                        {{ form.technical_skills }}
+                                    </div>
+                                    <div class="control-group">
+                                        {{ form.database_skills.label }}<br>
+                                        {{ form.database_skills }}
+                                    </div>
+                                    <div class="control-group">
+                                        {{ form.frameworks.label }}<br>
+                                        {{ form.frameworks }}
+                                    </div>
+                                    <div class="control-group">
+                                        {{ form.language_speaks.label }}<br>
+                                        {{ form.language_speaks }}
+                                    </div>
+                                    <div class="control-group">
+                                        {{ form.achievements.label }}<br>
+                                        {{ form.achievements }}
+                                    </div>
+                                    <div class="control-group">
+                                        {{ form.extra_curricular_data.label }}<br>
+                                        {{ form.extra_curricular_data }}
+                                    </div>
+                                    <div class="control-group">
+                                        {{ form.summary.label }}<br>
+                                        {{ form.summary }}
+                                    </div>
+                                    <div class="form-actions">
+                                        <button type="submit" class="btn btn-primary">Save</button>
+                                    </div>
+                                </fieldset>
+                            </form>
+                       </div>
+                       <div class="span5">
+                           <table class="table table-bordered">
+                              <tbody>
+                                <tr>
+                                  <td>Technical Skills</td>
+                                  <td>{{ data.technical_skills }}</td>
+                                </tr>
+                                <tr>
+                                  <td>Database Skills</td>
+                                  <td>{{ data.database_skills }}</td>
+                                </tr>
+                                <tr>
+                                  <td>Frameworks / CMS</td>
+                                  <td>{{ data.frameworks }}</td>
+                                </tr>
+                                <tr>
+                                  <td>Language Speaks</td>
+                                  <td>{{ data.language_speaks }}</td>
+                                </tr>
+                                <tr>
+                                  <td>Achievements</td>
+                                  <td>{{ data.achievements }}</td>
+                                </tr>
+                                <tr>
+                                  <td>Extra Curricular Activities</td>
+                                  <td>{{ data.extra_curricular_data }}</td>
+                                </tr>
+                                <tr>
+                                  <td>Resume Summary</td>
+                                  <td>{{ data.summary }}</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                       </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

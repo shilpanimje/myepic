@@ -6,79 +6,96 @@
     <div class="row-fluid">
         <!-- block -->
         <div class="block">
+
+
+            {% for message in form.name.errors %}
+                <div>{{ form.name.label }}:{{ message }}</div>
+            {% endfor %}
+
+            {% for message in form.email.errors %}
+                <div>{{ form.email.label }}:{{ message }}</div>
+            {% endfor %}
+
+            {% for message in form.altemail.errors %}
+                <div>{{ form.altemail.label }}:{{ message }}</div>
+            {% endfor %}
+
+            {% for message in form.number.errors %}
+                <div>{{ form.number.label }}:{{ message }}</div>
+            {% endfor %}
+
+            {% for message in form.gender.errors %}
+                <div>{{ form.gender.label }}:{{ message }}</div>
+            {% endfor %}
+
+            {% for message in form.status.errors %}
+                <div>{{ form.status.label }}:{{ message }}</div>
+            {% endfor %}
+
+            {% for message in form.nationality.errors %}
+                <div>{{ form.nationality.label }}:{{ message }}</div>
+            {% endfor %}
+
+            {% for message in form.bday.errors %}
+                <div>{{ form.bday.label }}:{{ message }}</div>
+            {% endfor %}
+
+            <!-- show flash messages -->
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class="flashes">
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            {% endwith %}
+            <!-- block -->
             <div class="navbar navbar-inner block-header">
-                <div class="muted pull-left">Form Example</div>
+                <div class="muted pull-left">Edit Profile Form</div>
             </div>
             <div class="block-content collapse in">
                 <div class="span12">
 
-                    <form id="profileform" class="form-horizontal" method="post" action="/editprofile" name="profileform">
+                    <form id="profileform" class="form-horizontal" method="post" action="{{ url_for('edit_profile') }}" name="profileform">
                         <fieldset>
-                            <legend>Form Components</legend>
-                            <input type="hidden" name="user_id" value="1"/>
+                            <input type="hidden" name="user_id" value="{{ id }}"/>
                             <div class="control-group">
-  								<label class="control-label">Name<span class="required">*</span></label>
-  								<div class="controls">
-  									<input type="text" name="name" data-required="1" class="span6 m-wrap" value="{% if data['name'] != '' %} {{ data['name'] }} {% endif %}"/>
-  								</div>
+  								 {{ form.name.label }}<br>
+                                 {{ form.name }}
+  							</div>
+                             <div class="control-group">
+  								 {{ form.designation.label }}<br>
+                                 {{ form.designation }}
   							</div>
                             <div class="control-group">
-  								<label class="control-label">Email<span class="required">*</span></label>
-  								<div class="controls">
-  									<input name="email" type="text" class="span6 m-wrap" value="{% if data['email'] != '' %} {{ data['email'] }} {% endif %}"/>
-  								</div>
+  								{{ form.email.label }}<br>
+                                {{ form.email(readonly="readonly") }}
   							</div>
                             <div class="control-group">
-  								<label class="control-label">Alternate Email Address</label>
-  								<div class="controls">
-  									<input name="altemail" type="text" class="span6 m-wrap" value="{% if data['altemail'] != '' %} {{ data['altemail'] }} {% endif %}"/>
-  								</div>
+  								{{ form.altemail.label }}<br>
+                                {{ form.altemail }}
                             </div>
                             <div class="control-group">
-  								<label class="control-label">Mobile Number</label>
-  								<div class="controls">
-  									<input name="number" type="text" class="span6 m-wrap" value="{% if data['number'] != '' %} {{ data['number'] }} {% endif %}"/>
-  								</div>
+  								{{ form.number.label }}<br>
+                                {{ form.number }}
                             </div>
                             <div class="control-group">
-  								<label class="control-label">Gender</label>
-  								<div class="controls">
-  									<label class="radio-inline">
-                                      <input type="radio" name="gender" value="M" default="M" checked="{% if data['gender'] != 'F' %} {{ 'checked' }} {% endif %}" > Male
-                                    </label>
-                                    <label class="radio-inline">
-                                      <input type="radio" name="gender" value="F" checked="{% if data['gender'] == 'F' %} {{ 'selected' }} {% endif %}"> Female
-                                    </label>
-  								</div>
+  								{{ form.gender.label }}<br>
+                                {{ form.gender }}
                             </div>
                             <div class="control-group">
-  								<label class="control-label">Marital Status</label>
-  								<div class="controls">
-  									<label class="radio-inline">
-                                      <input type="radio" name="status" value="S" checked="{% if data['gender'] != 'S' %} {{ 'checked' }} {% endif %}"> Single
-                                    </label>
-                                    <label class="radio-inline">
-                                      <input type="radio" name="status" value="M" checked="{% if data['gender'] == 'M' %} {{ 'checked' }} {% endif %}"> Married
-                                    </label>
-  								</div>
+  								{{ form.status.label }}<br>
+                                {{ form.status }}
                             </div>
 
                             <div class="control-group">
-                                <label class="control-label" for="typeahead">Nationality</label>
-                                <div class="controls">
-                                    <input type="text" class="span6" id="typeahead" data-provide="typeahead"
-                                           data-items="4"
-                                           data-source='["Indian"]' name="nationality">
-                                    <p class="help-block">Start typing to activate auto complete!</p>
-                                </div>
+                                {{ form.nationality.label }}<br>
+                                {{ form.nationality }}
                             </div>
                             <div class="control-group">
-                                <label class="control-label" for="date01">Date of Birth</label>
-                                <div class="controls">
-                                    <input type="text" class="input-xlarge datepicker" name="bday" id="date01" value="">
-                                    <p class="help-block">In addition to freeform text, any HTML5 text-based input
-                                        appears like so.</p>
-                                </div>
+                                {{ form.bday.label }}<br>
+                                {{ form.bday }}
                             </div>
                             <div class="form-actions">
                                 <button type="submit" class="btn btn-primary">Save changes</button>

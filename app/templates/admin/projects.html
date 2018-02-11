@@ -1,0 +1,62 @@
+<!-- base.html -->
+{% extends "admin/adminbase.html" %}
+{% block tile %}Admin Dashboard{% endblock %}
+{% block body %}
+<div class="span9" id="content">
+                    <div class="row-fluid">
+                        <!-- show flash messages -->
+                        {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            <ul class="flashes">
+                                {% for message in messages %}
+                                <li>{{ message }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                        {% endwith %}
+                        <!-- block -->
+                        <div class="block">
+                            <div class="navbar navbar-inner block-header">
+                                <div class="muted pull-left">Project List</div>
+                                <div class="pull-right"><span class="badge badge-warning"><a href="{{ url_for('add_project') }}">Add Project</a></span>
+                                </div>
+                            </div>
+                            <div class="block-content collapse in">
+                                <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Name</th>
+                                                <th>Description</th>
+                                                <th>Role/Work</th>
+                                                <th>Technology Used</th>
+                                                <th>Team Size</th>
+                                                <th>Project Url</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for project in projects %}
+                                            <tr>
+                                                <td>{{ project.id }}</td>
+                                                <td>{{ project.name }}</td>
+                                                <td>{{ project.description }}</td>
+                                                <td>{{ project.role }}</td>
+                                                <td>{{ project.technology }}</td>
+                                                <td>{{ project.team_size }}</td>
+                                                <td>{{ project.project_url }}</td>
+                                                <td>
+                                                    <a href="{{ url_for('update_project', id=project.id) }}" tooltip="edit"><i class="icon-edit"></i></a>
+                                                    <a href="{{ url_for('delete_project', id=project.id) }}" tooltip="remove"><i class="icon-remove"></i></a>
+                                                    <a href="{{ url_for('upload_project_image', id=project.id) }}" tooltip="Upload Image"><i class="icon-upload"></i></a>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                            </div>
+                        </div>
+                        <!-- /block -->
+                    </div>
+</div>
+{% endblock %}

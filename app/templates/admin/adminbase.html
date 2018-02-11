@@ -4,14 +4,14 @@
     <head>
         <title>{% block titile %}{% endblock %}</title>
         <!-- Bootstrap -->
-        <link href="static/admin/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
-        <link href="static/admin/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
-        <link href="static/admin/assets/styles.css" rel="stylesheet" media="screen">
+        <link href="{{ url_for('static', filename = 'admin/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" media="screen">
+        <link href="{{ url_for('static', filename = 'admin/bootstrap/css/bootstrap-responsive.min.css') }}" rel="stylesheet" media="screen">
+        <link href="{{ url_for('static', filename = 'admin/assets/styles.css') }}" rel="stylesheet" media="screen">
         <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]>
             <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
-        <script src="vendors/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        <script src="{{ url_for('static', filename = 'admin/vendors/modernizr-2.6.2-respond-1.1.0.min.js') }}"></script>
 
     </head>
 
@@ -36,7 +36,7 @@
                                     </li>
                                     <li class="divider"></li>
                                     <li>
-                                        <a tabindex="-1" href="login.html">Logout</a>
+                                        <a tabindex="-1" href="{{ url_for('logout') }}">Logout</a>
                                     </li>
                                 </ul>
                             </li>
@@ -136,6 +136,15 @@
                         <li>
                             <a href="editprofile"><i class="icon-chevron-right"></i>User Profile</a>
                         </li>
+                        <li>
+                            <a href="{{ url_for('user_projects') }}"><i class="icon-chevron-right"></i>User Projects</a>
+                        </li>
+                        <li>
+                            <a href="{{ url_for('add_skills') }}"><i class="icon-chevron-right"></i>User Skills</a>
+                        </li>
+                        <li>
+                            <a href="{{ url_for('add_education_details') }}"><i class="icon-chevron-right"></i>User Education Details</a>
+                        </li>
                     </ul>
                 </div>
                 
@@ -148,10 +157,10 @@
             </footer>
         </div>
         <!--/.fluid-container-->
-        <script src="static/admin/vendors/jquery-1.9.1.min.js"></script>
-        <script src="static/admin/bootstrap/js/bootstrap.min.js"></script>
-        <script src="static/admin/assets/scripts.js"></script>
-        <script src="static/admin/js/custom.js"></script>
+        <script src="{{ url_for('static', filename = 'admin/vendors/jquery-1.9.1.min.js') }}"></script>
+        <script src="{{ url_for('static', filename = 'admin/bootstrap/js/bootstrap.min.js') }}"></script>
+        <script src="{{ url_for('static', filename = 'admin/assets/scripts.js') }}"></script>
+        <script src="{{ url_for('static', filename = 'admin/js/custom.js') }}"></script>
     </body>
 
 </html>
